@@ -4199,6 +4199,7 @@ ZEND_EXT_API int zend_jit_check_support(void)
 
 	for (i = 0; i <= 256; i++) {
 		if (zend_get_user_opcode_handler(i) != NULL) {
+		    if (i == 57|| i == 58 || i == 79) continue;
 			zend_error(E_WARNING, "JIT is incompatible with third party extensions that setup user opcode handlers. JIT disabled.");
 			JIT_G(enabled) = 0;
 			JIT_G(on) = 0;
